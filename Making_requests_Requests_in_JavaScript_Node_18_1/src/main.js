@@ -17,11 +17,16 @@ function getAllNames() {
 
 function getConstellationsByQuadrant(quadrant) {
   return axios.get(`${BASE_URL}/constellations`)
-    .then(response => {})
-    .catch(error => {
+  .then(response => {
+      const constellations = response.data;
+      const filteredConstellations = constellations.filter(constellation => constellation.quadrant === quadrant);
+      filteredConstellations.forEach(constellation => console.log([constellation]));
+      return filteredConstellations;
+  })
+  .catch(error => {
       console.error('Error fetching constellations by quadrant:', error);
-      throw error;
-    })
+      throw error; // Optional: Re-throw the error for handling in higher layers
+  });
 }
 
 module.exports = {
