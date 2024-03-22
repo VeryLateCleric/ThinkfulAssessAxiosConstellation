@@ -15,7 +15,14 @@ function getAllNames() {
     })
 }
 
-function getConstellationsByQuadrant(quadrant) {}
+function getConstellationsByQuadrant(quadrant) {
+  return axios.get(`${BASE_URL}/constellations`)
+    .then(response => {})
+    .catch(error => {
+      console.error('Error fetching constellations by quadrant:', error);
+      throw error;
+    })
+}
 
 module.exports = {
   getAllNames,
